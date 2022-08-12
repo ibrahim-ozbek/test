@@ -1,8 +1,6 @@
-FROM ubuntu
-RUN apt-get update -y
-RUN apt-get install python3 -y
-RUN apt-get install python3-pip -y
-RUN pip3 install flask
-COPY . /app
-WORKDIR /app
-CMD python3 ./welcome.py
+FROM node:13-alpine
+RUN mkdir -p /home/app
+COPY ./* /home/app/
+WORKDIR /home/app
+RUN npm install
+CMD ["node", "server.js"]
